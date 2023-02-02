@@ -33,7 +33,7 @@ opencv.imwrite('./images/fusion_images/weight_function_method.png', wfm_image)
 
 
 """ Image dispersion calculation """
-complexed_image = opencv.imread(r'./images/fusion_images/maximum_method.png', opencv.IMREAD_GRAYSCALE)
+complexed_image = opencv.imread(r'./images/fusion_images/averaging_method.png', opencv.IMREAD_GRAYSCALE)
 compared_images = [vd_image, ir_image, complexed_image]
 dispersion(compared_images)
 
@@ -45,7 +45,10 @@ print(f'\n\nCorrelation coefficient = {correl_coef}')
 
 """ Images entropy calculation """
 H1 = calcEntropy2dSpeedUp(vd_image, 3, 3)
-print('\nH = ', H1)
+H2 = calcEntropy2dSpeedUp(ir_image, 3, 3)
+H3 = calcEntropy2dSpeedUp(complexed_image, 3, 3)
+CE = (2 * H3) / (H1 + H2)
+print('\nCE = ', CE)
 
 opencv.waitKey(0)
 opencv.destroyAllWindows()
