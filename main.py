@@ -4,7 +4,8 @@ from methods_of_aggregation import maximum_method, averaging_method, mask_method
 
 from dispersion import dispersion
 from correl import correlation_coefficient
-
+from entropia import calcEntropy2dSpeedUp
+from time import time
 
 """ Reading two original grayscale images """
 vd_image = opencv.imread(r'./images/building_photos/TV.PNG', opencv.IMREAD_GRAYSCALE)
@@ -39,8 +40,12 @@ dispersion(compared_images)
 
 """ Correlation coefficient of images calculation """
 correl_coef = correlation_coefficient(vd_image, complexed_image).real
-print(f'\n\nCorrelation coefficient: {correl_coef}')
+print(f'\n\nCorrelation coefficient = {correl_coef}')
 
+
+""" Images entropy calculation """
+H1 = calcEntropy2dSpeedUp(vd_image, 3, 3)
+print('\nH = ', H1)
 
 opencv.waitKey(0)
 opencv.destroyAllWindows()
