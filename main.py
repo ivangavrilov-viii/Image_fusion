@@ -50,5 +50,6 @@ H3 = calcEntropy2dSpeedUp(complexed_image, 3, 3)
 CE = (2 * H3) / (H1 + H2)
 print('\nCE = ', CE)
 
+
 opencv.waitKey(0)
 opencv.destroyAllWindows()
