@@ -5,7 +5,6 @@ from methods_of_aggregation import maximum_method, averaging_method, mask_method
 from dispersion import dispersion
 from correl import correlation_coefficient
 from entropia import calcEntropy2dSpeedUp
-from time import time
 
 """ Reading two original grayscale images """
 vd_image = opencv.imread(r'./images/building_photos/TV.PNG', opencv.IMREAD_GRAYSCALE)
