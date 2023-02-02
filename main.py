@@ -1,16 +1,45 @@
 import cv2 as opencv
-import resize
+from methods_of_aggregation import maximum_method, averaging_method, mask_method, \
+    power_transformation_method, weight_function_method
 
-ir_image = opencv.imread(r'./images/ID-foil-1.bmp', opencv.IMREAD_GRAYSCALE)
-vd_image = opencv.imread(r'./images/VD-foil-1.bmp', opencv.COLOR_BGR2GRAY)
+from dispersion import dispersion
+from correl import correlation_coefficient
 
-# h_ir, w_ir = ir_image.shape[:2]
-# h_vd, w_vd = vd_image.shape[:2]
-# res_img_linear = opencv.resize(ir_image, (w_vd, h_vd), opencv.INTER_LINEAR)
 
-new_IR = resize.resize_IR_image()
-opencv.imshow('START', new_IR)
-# opencv.imshow('START', vd_image)
+""" Reading two original grayscale images """
+vd_image = opencv.imread(r'./images/building_photos/TV.PNG', opencv.IMREAD_GRAYSCALE)
+ir_image = opencv.imread(r'./images/building_photos/TIR.PNG', opencv.IMREAD_GRAYSCALE)
+
+# """ Displaying images before fusion """
+# opencv.imshow('VD', vd_image)
+# opencv.imshow('VIR', ir_image)
+
+""" Get and saving images by various methods of image fusion """
+max_method_image = maximum_method(vd_image, ir_image)
+opencv.imwrite('./images/fusion_images/maximum_method.png', max_method_image)
+
+average_image = averaging_method(vd_image, ir_image)
+opencv.imwrite('./images/fusion_images/averaging_method.png', average_image)
+
+mask_image = mask_method(vd_image, ir_image, 10)
+opencv.imwrite('./images/fusion_images/mask_method.png', mask_image)
+
+ptm_image = power_transformation_method(vd_image, ir_image)
+opencv.imwrite('./images/fusion_images/power_transformation_method.png', ptm_image)
+
+wfm_image = weight_function_method(vd_image, ir_image)
+opencv.imwrite('./images/fusion_images/weight_function_method.png', wfm_image)
+
+
+""" Image dispersion calculation """
+complexed_image = opencv.imread(r'./images/fusion_images/maximum_method.png', opencv.IMREAD_GRAYSCALE)
+compared_images = [vd_image, ir_image, complexed_image]
+dispersion(compared_images)
+
+
+""" Correlation coefficient of images calculation """
+correl_coef = correlation_coefficient(vd_image, complexed_image).real
+print(f'\n\nCorrelation coefficient: {correl_coef}')
 
 
 opencv.waitKey(0)
