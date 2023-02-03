@@ -5,14 +5,15 @@ from methods_of_aggregation import maximum_method, averaging_method, mask_method
 from dispersion import dispersion
 from correl import correlation_coefficient
 from entropia import calcEntropy2dSpeedUp
+from fourier import fourier_transform
 
 """ Reading two original grayscale images """
 vd_image = opencv.imread(r'./images/building_photos/TV.PNG', opencv.IMREAD_GRAYSCALE)
 ir_image = opencv.imread(r'./images/building_photos/TIR.PNG', opencv.IMREAD_GRAYSCALE)
 
 # """ Displaying images before fusion """
-# opencv.imshow('VD', vd_image)
-# opencv.imshow('VIR', ir_image)
+opencv.imshow('VD', vd_image)
+opencv.imshow('VIR', ir_image)
 
 """ Get and saving images by various methods of image fusion """
 max_method_image = maximum_method(vd_image, ir_image)
@@ -49,6 +50,8 @@ H3 = calcEntropy2dSpeedUp(complexed_image, 3, 3)
 CE = (2 * H3) / (H1 + H2)
 print('\nCE = ', CE)
 
+
+opencv.imshow('Fourier', fourier_transform(ir_image))
 
 opencv.waitKey(0)
 opencv.destroyAllWindows()
