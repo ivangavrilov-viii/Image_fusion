@@ -11,7 +11,7 @@ from fourier import fourier_transform
 vd_image = opencv.imread(r'./images/building_photos/TV.PNG', opencv.IMREAD_GRAYSCALE)
 ir_image = opencv.imread(r'./images/building_photos/TIR.PNG', opencv.IMREAD_GRAYSCALE)
 
-# """ Displaying images before fusion """
+""" Displaying images before fusion """
 opencv.imshow('VD', vd_image)
 opencv.imshow('VIR', ir_image)
 
