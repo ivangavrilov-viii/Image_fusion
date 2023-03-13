@@ -8,14 +8,34 @@ while True:
     ret_visual, frame_visual = visual_video.read()
     ret_ir, frame_ir = ir_video.read()
 
-    for i in range(len(frame_visual[0])):
-        print(i)
-        for j in range(len(frame_visual[1])):
-            print(f'Element i={i}, j={j}')
-            print(frame_visual[i][j][0])
-            frame_visual[i][j] = np.uint8(frame_visual[i][j])
-            print(frame_visual[i][j])
+    # print(frame_visual)
+
+    h = len(frame_visual)
+    width = len(frame_visual[0])
+    # print(f'Width = {width}')
+    # print(f'Height = {h}')
+
+    visual_image = list()
+
+    for i in range(h):
+        # print(frame_visual[i])
+        # print(len(frame_visual[i]))
+        w_list = list()
+        for w_elem in frame_visual[i]:
+            w_list.append(np.uint8(w_elem[0]))
+        w_list = np.array(w_list)
+        visual_image.append(w_list)
+
+
+    print(frame_visual[100][100], visual_image[100][100])
+
+
+    #     # for j in range(len(frame_visual[1])):
+        #     print(f'Element i={i}, j={j}')
+        #     print(frame_visual[i][j][0])
+        #     # frame_visual[i][j] = np.uint8(frame_visual[i][j])
+        #     print(frame_visual[i][j])
     # print(len(frame[0]), len(frame[1])s)
-    cv.imshow('VIDEO_VD', frame_visual)
-    cv.imshow('VIDEO_IR', frame_ir)
-    cv.waitKey(1)
+    # cv.imshow('VIDEO_VD', w_list)
+    # cv.imshow('VIDEO_IR', frame_ir)
+    # cv.waitKey(1)
