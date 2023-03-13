@@ -22,7 +22,8 @@ while True:
         # print(len(frame_visual[i]))
         w_list = list()
         for w_elem in frame_visual[i]:
-            w_list.append(np.uint8(w_elem[0]))
+            # print(type(w_elem))
+            w_list.append(w_elem)
         w_list = np.array(w_list)
         visual_image.append(w_list)
 
@@ -35,7 +36,7 @@ while True:
         #     print(frame_visual[i][j][0])
         #     # frame_visual[i][j] = np.uint8(frame_visual[i][j])
         #     print(frame_visual[i][j])
-    # print(len(frame[0]), len(frame[1])s)
-    # cv.imshow('VIDEO_VD', w_list)
+    # print(len(frame[0]), len(frame[1]))
+    # cv.imshow('VIDEO_VD', visual_image)
     # cv.imshow('VIDEO_IR', frame_ir)
     # cv.waitKey(1)
